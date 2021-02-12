@@ -4,10 +4,16 @@ import styles from './layout.module.scss'
 import utilStyles from '../../styles/utils.module.scss'
 import Link from 'next/link'
 
+
+interface Props {
+  children: React.ReactNode,
+  home?: boolean
+}
+
 const name = 'Heini'
 export const siteTitle = 'Next.js Sample Website'
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home }: Props) {
   return (
     <div className={styles.container}>
       <Head>
@@ -39,26 +45,26 @@ export default function Layout({ children, home }) {
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
         ) : (
-          <>
-            <Link href="/">
-              <a>
-                <Image
-                  priority
-                  src="/images/profile.jpg"
-                  className={utilStyles.borderCircle}
-                  height={108}
-                  width={108}
-                  alt={name}
-                />
-              </a>
-            </Link>
-            <h2 className={utilStyles.headingLg}>
+            <>
               <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
+                <a>
+                  <Image
+                    priority
+                    src="/images/profile.jpg"
+                    className={utilStyles.borderCircle}
+                    height={108}
+                    width={108}
+                    alt={name}
+                  />
+                </a>
               </Link>
-            </h2>
-          </>
-        )}
+              <h2 className={utilStyles.headingLg}>
+                <Link href="/">
+                  <a className={utilStyles.colorInherit}>{name}</a>
+                </Link>
+              </h2>
+            </>
+          )}
       </header>
       <main>{children}</main>
       {!home && (
